@@ -81,20 +81,24 @@ public class SecurityConfig {
 		return NoOpPasswordEncoder.getInstance();
 	}
 
+	// @formatter:off
 	@Bean
 	RegisteredClientRepository registeredClientRepository() {
 		var r1 = RegisteredClient.withId(UUID.randomUUID().toString())
-				.clientId("client").clientSecret("secret").scope(OidcScopes.OPENID)
-				.scope(OidcScopes.PROFILE)
-				.redirectUri("https://springone.io/authorized")
+				.clientId("client")
+				.clientSecret("secret")
 				.clientAuthenticationMethod(
 						ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+				.scope(OidcScopes.OPENID)
+				.scope(OidcScopes.PROFILE)
+				.redirectUri("https://springone.io/authorized")
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.build();
 
 		return new InMemoryRegisteredClientRepository(r1);
 	}
+	// @formatter:on
 	
 	@Bean
 	AuthorizationServerSettings authorizationServerSettings() {
