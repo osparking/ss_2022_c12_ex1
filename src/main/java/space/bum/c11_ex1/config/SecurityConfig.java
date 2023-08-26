@@ -26,6 +26,8 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
+import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
+import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -38,6 +40,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
 public class SecurityConfig {
+	// @formatter:off
 	/* 오소리 서버에 오소리 코드 요청 URL 
 		 http://localhost:8080/oauth2/authorize?response_type=code&client_id=client&scope=openid&redirect_uri=https://springone.io/authorized&code_challenge=ojZHkZKUHL6x7_AuS48va_A39Fz2Hg1z7TUgKGdOj78&code_challenge_method=S256
 		 
@@ -62,7 +65,6 @@ public class SecurityConfig {
 		return http.build();
 	}
 
-	// @formatter:off
 	@Bean
 	@Order(2)
 	SecurityFilterChain appSecurityFilterChain(HttpSecurity http)
@@ -133,4 +135,11 @@ public class SecurityConfig {
 		return new ImmutableJWKSet<SecurityContext>(set);
 	}
 	// @formatter:on
+	
+	@Bean
+	OAuth2TokenCustomizer<JwtEncodingContext> oAuth2TokenCustomizer() {
+		return context -> {
+			context.getClaims().claim("test", "test");
+		};
+	}
 }
