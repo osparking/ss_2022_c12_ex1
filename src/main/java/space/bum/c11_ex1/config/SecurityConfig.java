@@ -38,6 +38,12 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
 public class SecurityConfig {
+	/* 오소리 서버에 오소리 코드 요청 URL 
+		 http://localhost:8080/oauth2/authorize?response_type=code&client_id=client&scope=openid&redirect_uri=https://springone.io/authorized&code_challenge=ojZHkZKUHL6x7_AuS48va_A39Fz2Hg1z7TUgKGdOj78&code_challenge_method=S256
+		 
+		 
+		 http://localhost:8080/oauth2/token?client_id=client&redirect_uri=https://springone.io/authorized&grant_type=authorization_code&code=dWlJMGpGlUAPz0sRU1y8suXDyWejo0_B4-WrLP-ks5kSlcdvlGG-u1OxOORvvpm7IMJaC_lMqzTX2Oh6AKHGOb2J4-Hp6PVPvGjLeUQMnWzz6h3Xyy1D0S6czbiTeU8f&code_verifier=qPsH306-ZDDaOE8DFzVn05TkN3ZZoVmI_6x4LsVglQI
+	 */
 	@Bean
 	@Order(1)
 	SecurityFilterChain asSecurityFilterChain(HttpSecurity http)
