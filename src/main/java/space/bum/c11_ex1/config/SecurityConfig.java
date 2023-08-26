@@ -94,6 +94,7 @@ public class SecurityConfig {
 				.redirectUri("https://springone.io/authorized")
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 				.build();
 
 		return new InMemoryRegisteredClientRepository(r1);
