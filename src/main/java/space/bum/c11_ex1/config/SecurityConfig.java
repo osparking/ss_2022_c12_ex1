@@ -1,6 +1,5 @@
 package space.bum.c11_ex1.config;
 
-
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -90,7 +89,6 @@ public class SecurityConfig {
 		return NoOpPasswordEncoder.getInstance();
 	}
 
-	// @formatter:off
 	@Bean
 	RegisteredClientRepository registeredClientRepository() {
 		var r1 = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -108,7 +106,6 @@ public class SecurityConfig {
 
 		return new InMemoryRegisteredClientRepository(r1);
 	}
-	// @formatter:on
 	
 	@Bean
 	AuthorizationServerSettings authorizationServerSettings() {
@@ -134,7 +131,6 @@ public class SecurityConfig {
 		JWKSet set = new JWKSet(key);
 		return new ImmutableJWKSet<SecurityContext>(set);
 	}
-	// @formatter:on
 	
 	@Bean
 	OAuth2TokenCustomizer<JwtEncodingContext> oAuth2TokenCustomizer() {
